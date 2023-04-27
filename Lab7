@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+#define ROWS 3
+#define COLS 4
+
+void sortRows(int arr[ROWS][COLS]) {
+    int i, j, k, temp;
+
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            for (k = j+1; k < COLS; k++) {
+                if (arr[i][j] > arr[i][k]) {
+                    temp = arr[i][j];
+                    arr[i][j] = arr[i][k];
+                    arr[i][k] = temp;
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    int arr[ROWS][COLS] = {{4, 2, 7, 1},
+                           {8, 5, 3, 9},
+                           {6, 0, 1, 2}};
+    int i, j;
+
+    printf("Before sorting:\n");
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+
+    sortRows(arr);
+
+    printf("\nAfter sorting:\n");
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
