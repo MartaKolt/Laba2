@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_WASHING_MACHINES 100
+
+typedef struct {
+    char model[50];
+    int warranty_period;
+    float price;
+    float power_consumption;
+    char control_type[20];
+} washing_machine;
+
+int main() {
+    washing_machine machines[MAX_WASHING_MACHINES];
+    int num_machines;
+
+    // Input the data for washing machines
+    printf("Enter the number of washing machines: ");
+    scanf("%d", &num_machines);
+
+    for (int i = 0; i < num_machines; i++) {
+        printf("\nEnter the details for washing machine %d:\n", i+1);
+
+        printf("Model: ");
+        scanf("%s", machines[i].model);
+
+        printf("Warranty period (months): ");
+        scanf("%d", &machines[i].warranty_period);
+
+        printf("Price: ");
+        scanf("%f", &machines[i].price);
+
+        printf("Power consumption (kWh): ");
+        scanf("%f", &machines[i].power_consumption);
+
+        printf("Control type (mechanical/electronic): ");
+        scanf("%s", machines[i].control_type);
+    }
+
+    // Display the data for washing machines with electronic control in order of decreasing power consumption
+    printf("\n\nWashing machines with electronic control in order of decreasing power consumption:\n");
+
+    for (int i = 0; i < num_machines; i++) {
+        if (strcmp(machines[i].control_type, "electronic") == 0) {
+            for (int j = i+1; j < num_machines; j++) {
+                if (strcmp(machines[j].control_type, "electronic") == 0 && machines[j].power_consumption > machines[i].power_consumption) {
+                    washing_machine temp = machines[i];
+                    machines[i] = machines[j];
+                    machines[j] = temp;
+                }
+            }
+            printf("\nModel: %s", machines[i].model);
+            printf("\nWarranty period (months): %d", machines[i].warranty_period);
+            printf("\nPrice: %f", machines[i].price);
+            printf("\nPower consumption (kWh): %f", machines[i].power_consumption);
+            printf("\nControl type: %s", machines[i].control_type);
+        }
+    }
+
+    return 0;
+}
