@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+// Функція для діагностування стану людини
+void diagnosePerson(float pulse, float temperature, float bloodPressure) {
+    if (pulse > 100) {
+        printf("Пульс занадто високий. Потрібна медична допомога.\n");
+    }
+    
+    if (temperature > 38.0) {
+        printf("Температура занадто висока. Потрібна медична допомога.\n");
+    }
+    
+    if (bloodPressure > 140) {
+        printf("Кров'яний тиск занадто високий. Потрібна медична допомога.\n");
+    }
+    
+    // Якщо всі показники у межах норми
+    printf("Стан людини в нормі.\n");
+}
+
+int main() {
+    float pulse, temperature, bloodPressure;
+    
+    printf("Введіть показник пульсу: ");
+    scanf("%f", &pulse);
+    
+    printf("Введіть показник температури: ");
+    scanf("%f", &temperature);
+    
+    printf("Введіть показник кров'яного тиску: ");
+    scanf("%f", &bloodPressure);
+    
+    diagnosePerson(pulse, temperature, bloodPressure);
+    
+    return 0;
+}
